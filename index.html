@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Huellita de papel · Diarios de embarazo personalizados</title>
-  <meta name="description" content="Diarios personalizados para embarazadas. Un lugar para guardar cada ecografía, cada patadita y cada carta a tu bebé. El regalo perfecto para una mamá primeriza.">
+  <title>Huellita de papel · Diarios de embarazo</title>
+  <meta name="description" content="Diarios de embarazo clásicos y personalizados. Un lugar para guardar cada ecografía, cada patadita y cada carta a tu bebé. El regalo perfecto para una mamá primeriza.">
   <meta name="theme-color" content="#F7F3EE">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Huellita de papel · Diarios de embarazo personalizados">
-  <meta property="og:description" content="La historia de tu familia, escrita por vos. Diarios personalizados para atesorar el embarazo.">
+  <meta property="og:title" content="Huellita de papel · Diarios de embarazo">
+  <meta property="og:description" content="Nueve meses que merecen quedar escritos. Diarios de embarazo clásicos y personalizados.">
   <meta property="og:image" content="assets/og-image.webp">
   <meta property="og:locale" content="es_AR">
 
@@ -18,698 +18,302 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Allura&family=Gloock&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/estilos.css">
 
-  <style>
-    :root {
-      --papel: #F7F3EE;
-      --algodon: #ECE7E1;
-      --lavanda: #E6E0E8;
-      --pizarra: #6F7590;
-      --tinta: #463F4E;
-      --azul: #A8BDD6;
-
-      --f-titulo: "Gloock", Georgia, serif;
-      --f-afectiva: "Allura", cursive;
-      --f-texto: "Jost", system-ui, sans-serif;
-
-      --max: 1120px;
-      --gutter: clamp(16px, 5vw, 48px);
-      --radius: 18px;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      background: var(--papel);
-      color: var(--tinta);
-      font-family: var(--f-texto);
-      font-weight: 300;
-      font-size: 1.0625rem;
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
-    }
-    img, svg { display: block; max-width: 100%; }
-    a { color: inherit; }
-
-    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
-
-    /* ---------- tipografía de marca ---------- */
-    .rotulo {
-      font-family: var(--f-texto);
-      font-weight: 400;
-      font-size: .72rem;
-      letter-spacing: .32em;
-      text-transform: uppercase;
-      color: var(--pizarra);
-    }
-    .titulo {
-      font-family: var(--f-titulo);
-      font-weight: 400;
-      color: var(--pizarra);
-      line-height: 1.08;
-      margin: 0;
-      text-wrap: balance;
-    }
-    .afectiva {
-      font-family: var(--f-afectiva);
-      font-weight: 400;
-      color: var(--pizarra);
-      line-height: 1;
-    }
-    .icono-pie { width: 1em; height: auto; }
-
-    /* ---------- botones ---------- */
-    .btn {
-      display: inline-flex; align-items: center; gap: .6em;
-      padding: 1em 1.8em;
-      border-radius: 999px;
-      font-family: var(--f-texto);
-      font-weight: 400;
-      font-size: .78rem;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: transform .25s ease, background-color .25s ease, color .25s ease;
-    }
-    .btn:hover { transform: translateY(-2px); }
-    .btn:focus-visible { outline: 2px solid var(--azul); outline-offset: 3px; }
-    .btn-tinta { background: var(--tinta); color: var(--papel); }
-    .btn-tinta:hover { background: var(--pizarra); }
-    .btn-papel { background: var(--papel); color: var(--tinta); }
-    .btn-papel:hover { background: var(--lavanda); }
-    .btn-linea { border: 1px solid var(--pizarra); color: var(--pizarra); padding: .8em 1.4em; }
-    .btn-linea:hover { background: var(--pizarra); color: var(--papel); }
-    .btn svg { width: 1.25em; height: 1.25em; }
-
-    /* ---------- header ---------- */
-    .header {
-      position: sticky; top: 0; z-index: 20;
-      background: color-mix(in srgb, var(--papel) 88%, transparent);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-bottom: 1px solid transparent;
-      transition: border-color .3s ease;
-    }
-    .header.scrolled { border-bottom-color: var(--algodon); }
-    .header .wrap { display: flex; align-items: center; justify-content: space-between; height: 76px; }
-    .logo { display: flex; align-items: center; gap: .7rem; text-decoration: none; color: var(--pizarra); }
-    .logo .icono-pie { font-size: 2.1rem; }
-    .logo-texto { display: flex; flex-direction: column; line-height: 1; }
-    .logo-texto .titulo { font-size: 1.55rem; }
-    .logo-texto .afectiva { font-size: 1.35rem; margin: -.15em 0 0 2.4em; }
-
-    /* ---------- hero ---------- */
-    .hero { padding: clamp(40px, 7vw, 96px) 0 clamp(64px, 9vw, 120px); overflow: hidden; }
-    .hero .wrap {
-      display: grid; gap: clamp(48px, 6vw, 80px);
-      grid-template-columns: 1.1fr .9fr; align-items: center;
-    }
-    .hero h1 { font-size: clamp(2.6rem, 6vw, 4.6rem); }
-    .hero h1 .afectiva { display: block; font-size: 1.15em; margin-top: .1em; }
-    .hero p.lead { font-size: 1.15rem; max-width: 34ch; margin: 1.6rem 0 2.2rem; }
-    .hero .rotulo { margin-bottom: 1.4rem; display: block; }
-    .hero-acciones { display: flex; flex-wrap: wrap; gap: 1rem 1.6rem; align-items: center; }
-    .hero-acciones .nota { font-size: .9rem; color: var(--pizarra); }
-
-    /* tapa del diario (ilustración en CSS) */
-    .tapas { position: relative; justify-self: center; width: min(100%, 380px); aspect-ratio: 3 / 4; }
-    .tapa {
-      position: absolute; inset: 0;
-      border-radius: 6px 16px 16px 6px;
-      background: var(--lavanda);
-      box-shadow:
-        inset 10px 0 0 -6px rgba(70,63,78,.08),
-        0 30px 60px -30px rgba(70,63,78,.45),
-        0 8px 18px -10px rgba(70,63,78,.25);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; padding: 12% 10%;
-    }
-    .tapa::before {
-      content: ""; position: absolute; inset: 14px 14px 14px 22px;
-      border: 1px solid rgba(111,117,144,.35); border-radius: 4px 10px 10px 4px;
-      pointer-events: none;
-    }
-    .tapa .rotulo { font-size: .55rem; letter-spacing: .38em; position: absolute; top: 9%; }
-    .tapa .icono-pie { font-size: 2.6rem; color: var(--pizarra); margin-bottom: .8rem; }
-    .tapa .afectiva { font-size: clamp(2.8rem, 6vw, 3.6rem); }
-    .tapa .nombre { font-family: var(--f-titulo); color: var(--pizarra); font-size: clamp(2rem, 4vw, 2.6rem); line-height: 1; margin-top: .2rem; }
-    .tapa .bajada { font-size: .55rem; letter-spacing: .3em; text-transform: uppercase; color: var(--pizarra); position: absolute; bottom: 9%; }
-    .tapa-atras {
-      background: var(--azul);
-      transform: rotate(7deg) translate(14%, 2%);
-    }
-    .tapa-atras::before { border-color: rgba(247,243,238,.5); }
-    .tapa-frente { transform: rotate(-3deg); }
-    .destello { position: absolute; color: var(--azul); width: 28px; }
-    .destello.d1 { top: -4%; left: -6%; }
-    .destello.d2 { bottom: 6%; left: -12%; width: 18px; color: var(--pizarra); opacity: .5; }
-
-    /* ---------- secciones ---------- */
-    section { position: relative; }
-    .seccion { padding: clamp(72px, 10vw, 128px) 0; }
-    .encabezado { text-align: center; max-width: 640px; margin: 0 auto clamp(40px, 6vw, 64px); }
-    .encabezado .rotulo { display: block; margin-bottom: 1rem; }
-    .encabezado h2 { font-size: clamp(2.1rem, 4.5vw, 3.2rem); }
-    .encabezado h2 .afectiva { font-size: 1.2em; }
-    .encabezado p { margin: 1.2rem auto 0; max-width: 52ch; }
-
-    /* momentos */
-    .momentos { background: var(--algodon); }
-    .momentos-lista {
-      list-style: none; margin: 0; padding: 0;
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
-      background: rgba(111,117,144,.18);
-      border: 1px solid rgba(111,117,144,.18);
-      border-radius: var(--radius); overflow: hidden;
-    }
-    .momentos-lista li {
-      background: var(--algodon);
-      padding: clamp(28px, 4vw, 44px);
-    }
-    .momentos-lista .num { font-family: var(--f-afectiva); font-size: 2.6rem; color: var(--azul); line-height: 1; }
-    .momentos-lista h3 { font-family: var(--f-titulo); font-weight: 400; color: var(--pizarra); font-size: 1.35rem; margin: .5rem 0 .4rem; line-height: 1.2; }
-    .momentos-lista p { margin: 0; font-size: .98rem; }
-
-    /* qué incluye */
-    .incluye .wrap { display: grid; grid-template-columns: .95fr 1.05fr; gap: clamp(40px, 6vw, 88px); align-items: center; }
-    .incluye .encabezado { text-align: left; margin: 0; }
-    .incluye .encabezado p { margin-left: 0; }
-    .paginas { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .paginas li {
-      background: #fff8; border: 1px solid var(--algodon);
-      border-radius: 14px; padding: 18px 20px;
-      display: flex; gap: 14px; align-items: flex-start;
-      font-size: .98rem; line-height: 1.45;
-    }
-    .paginas li strong { display: block; font-weight: 500; color: var(--tinta); }
-    .paginas li span { color: var(--pizarra); font-size: .9rem; }
-    .paginas svg { flex: none; width: 22px; height: 22px; color: var(--pizarra); margin-top: 2px; }
-
-    /* personalización */
-    .personaliza { background: var(--lavanda); }
-    .opciones { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 3vw, 28px); }
-    .opcion {
-      background: var(--papel); border-radius: var(--radius);
-      padding: clamp(28px, 4vw, 40px) clamp(24px, 3vw, 32px);
-      text-align: center;
-    }
-    .opcion .afectiva { font-size: 2.6rem; display: block; }
-    .opcion h3 { font-family: var(--f-titulo); font-weight: 400; color: var(--pizarra); font-size: 1.4rem; margin: .4rem 0 .6rem; }
-    .opcion p { margin: 0; font-size: .97rem; }
-    .muestras { display: flex; justify-content: center; gap: 10px; margin-top: 1.2rem; }
-    .muestras span { width: 26px; height: 26px; border-radius: 50%; border: 1px solid rgba(70,63,78,.15); }
-
-    /* versiones: clásico y personalizado */
-    .versiones { background: var(--algodon); }
-    .versiones-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 3vw, 32px); max-width: 960px; margin: 0 auto; }
-    .version {
-      background: var(--papel); border-radius: var(--radius);
-      padding: clamp(28px, 4vw, 44px);
-      display: flex; flex-direction: column;
-    }
-    .version-tinta { background: var(--tinta); color: var(--papel); }
-    .version-tinta .titulo, .version-tinta .afectiva, .version-tinta .rotulo { color: var(--papel); }
-    .version .etiqueta {
-      align-self: flex-start;
-      border: 1px solid currentColor; border-radius: 999px;
-      padding: .35em 1em; margin-bottom: 1.6rem;
-    }
-    .version-tinta .etiqueta { color: var(--azul); }
-    .version .mini-tapa { position: relative; width: 150px; aspect-ratio: 3 / 4; margin-bottom: 1.6rem; }
-    .version .mini-tapa .tapa { padding: 10%; box-shadow: 0 16px 30px -18px rgba(0,0,0,.45); }
-    .version .mini-tapa .tapa::before { inset: 7px 7px 7px 11px; }
-    .version .mini-tapa .icono-pie { font-size: 1.3rem; margin-bottom: .3rem; }
-    .version .mini-tapa .afectiva { font-size: 1.7rem; }
-    .version .mini-tapa .nombre { font-size: 1.15rem; }
-    .version-tinta .mini-tapa .tapa { background: var(--azul); }
-    .version-tinta .mini-tapa .tapa .afectiva { color: var(--tinta); }
-    .version .mini-tapa .tapa .afectiva { color: var(--pizarra); }
-    .version h3 { font-size: clamp(1.7rem, 3vw, 2.1rem); }
-    .version h3 .afectiva { font-size: 1.15em; }
-    .version > p { margin: .8rem 0 1.2rem; }
-    .version ul { list-style: none; padding: 0; margin: 0 0 2rem; display: grid; gap: .55rem; font-size: .97rem; }
-    .version li { display: flex; gap: .7rem; align-items: flex-start; line-height: 1.5; }
-    .version li svg { flex: none; width: 14px; height: 14px; margin-top: .35em; color: var(--azul); }
-    .version .btn { margin-top: auto; align-self: flex-start; }
-
-    /* regalo */
-    .regalo .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 88px); align-items: center; }
-    .regalo-visual {
-      aspect-ratio: 1; border-radius: 50%;
-      background: var(--lavanda);
-      display: grid; place-items: center;
-      max-width: 440px; width: 100%; justify-self: center;
-      position: relative;
-    }
-    .regalo-visual .tarjeta {
-      width: 62%; aspect-ratio: 2 / 3; background: var(--papel);
-      border-radius: 6px; transform: rotate(-4deg);
-      box-shadow: 0 24px 44px -24px rgba(70,63,78,.4);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      padding: 10%; text-align: center; gap: .6rem;
-    }
-    .regalo-visual .tarjeta .afectiva { font-size: 2.5rem; }
-    .regalo-visual .tarjeta p { margin: 0; font-size: .9rem; color: var(--pizarra); line-height: 1.5; }
-    .regalo-visual .tarjeta .icono-pie { font-size: 1.8rem; color: var(--pizarra); }
-    .regalo h2 { font-size: clamp(2.1rem, 4.5vw, 3.2rem); }
-    .regalo h2 .afectiva { font-size: 1.2em; }
-    .regalo .rotulo { display: block; margin-bottom: 1rem; }
-    .ocasiones { list-style: none; padding: 0; margin: 1.6rem 0 2.2rem; display: flex; flex-wrap: wrap; gap: 10px; }
-    .ocasiones li {
-      border: 1px solid rgba(111,117,144,.4); color: var(--pizarra);
-      border-radius: 999px; padding: .45em 1.1em; font-size: .9rem;
-    }
-
-    /* pasos */
-    .pasos { background: var(--algodon); }
-    .pasos-lista { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(24px, 4vw, 48px); counter-reset: paso; }
-    .pasos-lista li { text-align: center; padding: 0 clamp(0px, 1vw, 12px); }
-    .pasos-lista .circulo {
-      width: 84px; height: 84px; margin: 0 auto 1.2rem;
-      border-radius: 50%; background: var(--papel);
-      display: grid; place-items: center;
-      font-family: var(--f-titulo); color: var(--pizarra); font-size: 1.9rem;
-    }
-    .pasos-lista h3 { font-family: var(--f-titulo); font-weight: 400; color: var(--pizarra); font-size: 1.35rem; margin: 0 0 .5rem; }
-    .pasos-lista p { margin: 0; font-size: .98rem; }
-    .pasos .centro { text-align: center; margin-top: clamp(40px, 6vw, 64px); }
-
-    /* nota personal */
-    .nota-personal { text-align: center; }
-    .nota-personal .wrap { max-width: 760px; }
-    .nota-personal .icono-pie { font-size: 2.4rem; color: var(--azul); margin: 0 auto 1.4rem; }
-    .nota-personal blockquote { margin: 0; }
-    .nota-personal blockquote p {
-      font-family: var(--f-titulo); color: var(--pizarra);
-      font-size: clamp(1.5rem, 3.2vw, 2.15rem); line-height: 1.35; margin: 0;
-      text-wrap: balance;
-    }
-    .nota-personal .firma { font-family: var(--f-afectiva); color: var(--pizarra); font-size: 2.4rem; margin-top: 1.4rem; display: block; }
-
-    /* preguntas */
-    .preguntas .wrap { max-width: 780px; }
-    .faq { border-top: 1px solid var(--algodon); }
-    .faq details { border-bottom: 1px solid var(--algodon); }
-    .faq summary {
-      cursor: pointer; list-style: none;
-      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
-      padding: 1.4rem 0;
-      font-family: var(--f-titulo); color: var(--pizarra); font-size: 1.2rem; line-height: 1.3;
-    }
-    .faq summary::-webkit-details-marker { display: none; }
-    .faq summary::after {
-      content: "+"; font-family: var(--f-texto); font-weight: 300; font-size: 1.6rem;
-      transition: transform .25s ease; flex: none;
-    }
-    .faq details[open] summary::after { transform: rotate(45deg); }
-    .faq summary:focus-visible { outline: 2px solid var(--azul); outline-offset: 4px; border-radius: 4px; }
-    .faq details p { margin: 0 0 1.4rem; max-width: 62ch; }
-
-    /* cierre */
-    .cierre { background: var(--tinta); color: var(--papel); text-align: center; }
-    .cierre .titulo, .cierre .afectiva, .cierre .rotulo { color: var(--papel); }
-    .cierre .icono-pie { font-size: 2.6rem; color: var(--papel); margin: 0 auto 1.6rem; }
-    .cierre h2 { font-size: clamp(2.6rem, 6vw, 4.2rem); }
-    .cierre h2 .afectiva { display: block; font-size: .8em; margin-top: .25em; color: var(--azul); }
-    .cierre p { max-width: 44ch; margin: 1.4rem auto 2.4rem; opacity: .9; }
-
-    .footer { background: var(--tinta); color: var(--papel); border-top: 1px solid rgba(247,243,238,.12); }
-    .footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; padding-top: 28px; padding-bottom: 28px; font-size: .85rem; opacity: .8; }
-    .footer .afectiva { color: var(--papel); font-size: 1.6rem; }
-
-    /* WhatsApp flotante */
-    .wa-flotante {
-      position: fixed; right: 18px; bottom: 18px; z-index: 30;
-      width: 58px; height: 58px; border-radius: 50%;
-      background: var(--tinta); color: var(--papel);
-      display: grid; place-items: center;
-      box-shadow: 0 12px 28px -10px rgba(70,63,78,.6);
-      transition: transform .25s ease, opacity .3s ease, background-color .25s ease;
-      opacity: 0; pointer-events: none; transform: translateY(12px);
-    }
-    .wa-flotante.visible { opacity: 1; pointer-events: auto; transform: none; }
-    .wa-flotante:hover { background: var(--pizarra); }
-    .wa-flotante svg { width: 28px; height: 28px; }
-
-    /* aparición suave */
-    .revelar { opacity: 0; transform: translateY(18px); transition: opacity .8s ease, transform .8s ease; }
-    .revelar.visible { opacity: 1; transform: none; }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .revelar { opacity: 1; transform: none; transition: none; }
-      .btn, .wa-flotante { transition: none; }
-    }
-
-    /* ---------- responsive ---------- */
-    @media (max-width: 900px) {
-      .hero .wrap, .incluye .wrap, .regalo .wrap { grid-template-columns: 1fr; }
-      .hero { text-align: center; }
-      .hero p.lead { margin-left: auto; margin-right: auto; }
-      .hero-acciones { justify-content: center; }
-      .tapas { width: min(78%, 320px); margin-top: 8px; }
-      .incluye .encabezado, .regalo-texto { text-align: center; }
-      .incluye .encabezado p { margin-left: auto; }
-      .ocasiones { justify-content: center; }
-      .regalo-visual { max-width: 340px; order: 2; }
-      .momentos-lista, .opciones, .versiones-grid { grid-template-columns: 1fr; }
-      .pasos-lista { grid-template-columns: 1fr; gap: 40px; }
-    }
-    @media (max-width: 560px) {
-      .header .btn-linea { display: none; }
-      .paginas { grid-template-columns: 1fr; }
-      .logo-texto .titulo { font-size: 1.4rem; }
-    }
-  </style>
+  <script>document.documentElement.classList.add("js");</script>
+  <script type="importmap">{ "imports": { "three": "./assets/vendor/three.module.min.js" } }</script>
+  <script defer src="assets/js/tapa.js"></script>
+  <script defer src="assets/js/ui.js"></script>
+  <script type="module" src="assets/js/libro.js"></script>
 </head>
 <body>
 
-  <!-- Ícono de la huellita (trazo del manual de marca), reutilizable con currentColor -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <symbol id="pie" viewBox="0 0 42 58" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
       <path d="M21 20C29.5 20 32 29 30.5 38.5C29 48.5 25 55 19 55C13 55 10.5 49.5 11.5 43.5C12.5 37.5 9.5 32 11 26C12.3 21.5 15.5 20 21 20Z"/>
       <circle cx="13.5" cy="12" r="4.2"/><circle cx="21" cy="8.5" r="3"/><circle cx="26.8" cy="10" r="2.5"/><circle cx="31" cy="13.8" r="2.1"/><circle cx="33.6" cy="18.6" r="1.7"/>
       <path d="M20.5 42l-4-3.8c-1.8-1.9-.3-4.8 2.2-4.2.8.2 1.4.8 1.8 1.4.4-.6 1-1.2 1.8-1.4 2.5-.6 4 2.3 2.2 4.2z"/>
     </symbol>
+    <symbol id="huella" viewBox="0 0 42 58" fill="currentColor">
+      <path d="M21 20C29.5 20 32 29 30.5 38.5C29 48.5 25 55 19 55C13 55 10.5 49.5 11.5 43.5C12.5 37.5 9.5 32 11 26C12.3 21.5 15.5 20 21 20Z"/>
+      <circle cx="13.5" cy="12" r="4.2"/><circle cx="21" cy="8.5" r="3"/><circle cx="26.8" cy="10" r="2.5"/><circle cx="31" cy="13.8" r="2.1"/><circle cx="33.6" cy="18.6" r="1.7"/>
+    </symbol>
     <symbol id="destello" viewBox="0 0 24 24" fill="currentColor">
       <path d="M12 0c.6 6.2 5.8 11.4 12 12-6.2.6-11.4 5.8-12 12-.6-6.2-5.8-11.4-12-12C6.2 11.4 11.4 6.2 12 0z"/>
-    </symbol>
-    <symbol id="corazon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M12 20.5 4.6 13.4C1.7 10.4 4.1 5.6 8 6.6c1.7.4 3 1.6 4 2.9 1-1.3 2.3-2.5 4-2.9 3.9-1 6.3 3.8 3.4 6.8z"/>
     </symbol>
     <symbol id="whatsapp" viewBox="0 0 24 24" fill="currentColor">
       <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91A9.85 9.85 0 0 0 12.04 2zm0 18.15h-.01a8.23 8.23 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.21 8.21 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24a8.2 8.2 0 0 1 8.24 8.25c0 4.54-3.7 8.23-8.24 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06a6.8 6.8 0 0 1-3.37-2.94c-.25-.44.25-.41.72-1.36.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48a.92.92 0 0 0-.66.31c-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.24 3.74 1.57.68 2.19.74 2.98.62.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.23-.17-.47-.29z"/>
     </symbol>
   </svg>
 
-  <header class="header" id="top">
+  <canvas id="escena3d" aria-hidden="true"></canvas>
+
+  <header class="header">
     <div class="wrap">
-      <a class="logo" href="#top" aria-label="Huellita de papel, inicio">
+      <a class="logo" href="#inicio" aria-label="Huellita de papel, inicio">
         <svg class="icono-pie" aria-hidden="true"><use href="#pie"/></svg>
-        <span class="logo-texto">
-          <span class="titulo">Huellita</span>
-          <span class="afectiva">de papel</span>
-        </span>
+        <span class="logo-texto"><span class="titulo">Huellita</span><span class="afectiva">de papel</span></span>
       </a>
-      <a class="btn btn-linea js-wa" href="#" target="_blank" rel="noopener">Pedí el tuyo</a>
+      <nav class="nav" aria-label="Secciones">
+        <a href="#por-dentro">Por dentro</a>
+        <a href="#disena">Diseñá el tuyo</a>
+        <a href="#regalo">Para regalar</a>
+        <a href="#preguntas">Preguntas</a>
+      </nav>
+      <a class="btn btn-linea js-wa" href="https://wa.me/5492213512482" target="_blank" rel="noopener">Escribime</a>
     </div>
   </header>
 
   <main>
 
-    <!-- HERO -->
-    <section class="hero">
+    <!-- 1 · PORTADA -->
+    <section class="escena hero" id="inicio" data-libro="hero">
       <div class="wrap">
-        <div class="revelar">
-          <span class="rotulo">Diarios de embarazo · clásicos y personalizados</span>
-          <h1 class="titulo">
-            La historia de tu familia
-            <span class="afectiva">empieza en la panza</span>
-          </h1>
-          <p class="lead">Un diario hecho para vos, para guardar cada ecografía, cada patadita y cada palabra que le querés decir a tu bebé antes de conocerlo.</p>
-          <div class="hero-acciones">
-            <a class="btn btn-tinta js-wa" href="#" target="_blank" rel="noopener">
-              <svg aria-hidden="true"><use href="#whatsapp"/></svg>
-              Quiero el mío
+        <div class="texto-3d">
+          <span class="rotulo revelar">Diarios de embarazo</span>
+          <h1 class="titulo revelar" data-split>Nueve meses que merecen quedar <span class="afectiva">escritos</span></h1>
+          <p class="lead revelar">Un diario para guardar cada ecografía, cada patadita y cada palabra que le querés decir a tu bebé antes de conocerlo.</p>
+          <div class="acciones revelar">
+            <a class="btn btn-tinta js-wa" href="https://wa.me/5492213512482" target="_blank" rel="noopener">
+              <svg aria-hidden="true"><use href="#whatsapp"/></svg>Quiero el mío
             </a>
-            <span class="nota">Lo armamos juntas por WhatsApp 🤍</span>
+            <a class="enlace" href="#disena">Diseñá tu tapa <span aria-hidden="true">→</span></a>
           </div>
         </div>
+        <div class="slot-2d" aria-hidden="true"></div>
+      </div>
 
-        <div class="tapas revelar" aria-hidden="true">
-          <svg class="destello d1"><use href="#destello"/></svg>
-          <svg class="destello d2"><use href="#destello"/></svg>
-          <div class="tapa tapa-atras"></div>
-          <div class="tapa tapa-frente">
-            <span class="rotulo">Huellita de papel</span>
-            <svg class="icono-pie"><use href="#pie"/></svg>
-            <span class="afectiva">esperándote</span>
-            <span class="nombre">Noah</span>
-            <span class="bajada">De la panza a tus brazos</span>
-          </div>
+      <div class="cinta" aria-hidden="true">
+        <div class="cinta-pista">
+          <span>Diseñado por una mamá</span><svg><use href="#destello"/></svg>
+          <span>Clásicos y personalizados</span><svg><use href="#destello"/></svg>
+          <span>Atención uno a uno</span><svg><use href="#destello"/></svg>
+          <span>Hecho para guardarse toda la vida</span><svg><use href="#destello"/></svg>
+          <span>Diseñado por una mamá</span><svg><use href="#destello"/></svg>
+          <span>Clásicos y personalizados</span><svg><use href="#destello"/></svg>
+          <span>Atención uno a uno</span><svg><use href="#destello"/></svg>
+          <span>Hecho para guardarse toda la vida</span><svg><use href="#destello"/></svg>
         </div>
       </div>
     </section>
 
-    <!-- MOMENTOS -->
-    <section class="seccion momentos">
+    <!-- 2 · SE ABRE -->
+    <section class="escena" id="por-dentro" data-libro="abrir">
       <div class="wrap">
-        <div class="encabezado revelar">
-          <span class="rotulo">Por qué un diario</span>
-          <h2 class="titulo">Hay momentos que <span class="afectiva">se viven una sola vez</span></h2>
-          <p>Los nueve meses pasan rápido. Las fotos se pierden en el celular y los detalles se nos escapan. Un diario de papel los guarda para siempre, escritos con tu letra.</p>
-        </div>
-        <ol class="momentos-lista revelar">
-          <li>
-            <span class="num">uno</span>
-            <h3>Para vos, hoy</h3>
-            <p>Un ratito para frenar, escribir lo que sentís y conectar con tu bebé semana a semana.</p>
-          </li>
-          <li>
-            <span class="num">dos</span>
-            <h3>Para tu familia, siempre</h3>
-            <p>La primera ecografía, los antojos, la reacción de los abuelos. Todo en un solo lugar.</p>
-          </li>
-          <li>
-            <span class="num">tres</span>
-            <h3>Para tu bebé, mañana</h3>
-            <p>El día que crezca va a poder leer cómo lo esperaron. No hay regalo más lindo que ese.</p>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- QUÉ INCLUYE -->
-    <section class="seccion incluye">
-      <div class="wrap">
-        <div class="encabezado revelar">
-          <span class="rotulo">Por dentro</span>
-          <h2 class="titulo">Páginas pensadas para <span class="afectiva">atesorar</span></h2>
-          <p>Cada diario está diseñado para acompañarte desde el positivo hasta el día en que lo tenés en brazos. Sin presiones: escribís cuando querés y como querés.</p>
-        </div>
-        <ul class="paginas revelar">
-          <li><svg aria-hidden="true"><use href="#corazon"/></svg><div><strong>El positivo</strong><span>Cómo te enteraste y a quién se lo contaste primero</span></div></li>
-          <li><svg aria-hidden="true"><use href="#corazon"/></svg><div><strong>Mes a mes</strong><span>Cómo te sentís, cómo crece la panza</span></div></li>
-          <li><svg aria-hidden="true"><use href="#corazon"/></svg><div><strong>Ecografías</strong><span>Espacios para pegarlas y anotar qué viste</span></div></li>
-          <li><svg aria-hidden="true"><use href="#corazon"/></svg><div><strong>Antojos y primeras pataditas</strong><span>Los detalles que después se olvidan</span></div></li>
-          <li><svg aria-hidden="true"><use href="#corazon"/></svg><div><strong>Cartas a tu bebé</strong><span>Para que las lea cuando sea grande</span></div></li>
-          <li><svg aria-hidden="true"><use href="#corazon"/></svg><div><strong>El día que te conocimos</strong><span>El nacimiento, contado por vos</span></div></li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- VERSIONES: CLÁSICO Y PERSONALIZADO -->
-    <section class="seccion versiones" id="versiones">
-      <div class="wrap">
-        <div class="encabezado revelar">
-          <span class="rotulo">Elegí tu diario</span>
-          <h2 class="titulo">Dos formas de <span class="afectiva">guardar tu historia</span></h2>
-          <p>Las mismas páginas llenas de amor, en dos versiones. Un diario clásico listo para llevar, o uno hecho a pedido con tu nombre.</p>
-        </div>
-        <div class="versiones-grid">
-          <article class="version revelar">
-            <span class="rotulo etiqueta">Listo para regalar</span>
-            <div class="mini-tapa" aria-hidden="true">
-              <div class="tapa">
-                <svg class="icono-pie"><use href="#pie"/></svg>
-                <span class="afectiva">esperándote</span>
-              </div>
-            </div>
-            <h3 class="titulo">Diario <span class="afectiva">clásico</span></h3>
-            <p>Como el que encontrás en una librería, pero con todo el cariño de Huellita de papel. Ideal si lo querés ya o para tener a mano un regalo lindo.</p>
-            <ul>
-              <li><svg aria-hidden="true"><use href="#destello"/></svg>Tapa con el diseño de la marca</li>
-              <li><svg aria-hidden="true"><use href="#destello"/></svg>Todas las páginas del embarazo, mes a mes</li>
-              <li><svg aria-hidden="true"><use href="#destello"/></svg>Sin esperas de diseño</li>
-            </ul>
-            <a class="btn btn-tinta js-wa" data-msg="clasico" href="#" target="_blank" rel="noopener">
-              <svg aria-hidden="true"><use href="#whatsapp"/></svg>
-              Quiero el clásico
-            </a>
-          </article>
-
-          <article class="version version-tinta revelar">
-            <span class="rotulo etiqueta">Hecho a pedido</span>
-            <div class="mini-tapa" aria-hidden="true">
-              <div class="tapa">
-                <svg class="icono-pie"><use href="#pie"/></svg>
-                <span class="afectiva">esperándote</span>
-                <span class="nombre">Noah</span>
-              </div>
-            </div>
-            <h3 class="titulo">Diario <span class="afectiva">personalizado</span></h3>
-            <p>Único, como tu bebé. Lo diseñamos juntas con los detalles que lo hacen solo tuyo.</p>
-            <ul>
-              <li><svg aria-hidden="true"><use href="#destello"/></svg>Nombre o apodo de la panza en la tapa</li>
-              <li><svg aria-hidden="true"><use href="#destello"/></svg>Elegís el color de tapa</li>
-              <li><svg aria-hidden="true"><use href="#destello"/></svg>Dedicatoria especial en la primera página</li>
-            </ul>
-            <a class="btn btn-papel js-wa" href="#" target="_blank" rel="noopener">
-              <svg aria-hidden="true"><use href="#whatsapp"/></svg>
-              Quiero el personalizado
-            </a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- PERSONALIZACIÓN -->
-    <section class="seccion personaliza">
-      <div class="wrap">
-        <div class="encabezado revelar">
-          <span class="rotulo">Hecho a tu medida</span>
-          <h2 class="titulo">Cada familia <span class="afectiva">elige sus páginas</span></h2>
-          <p>No hay dos diarios iguales. Lo personalizamos con los detalles que lo hacen único.</p>
-        </div>
-        <div class="opciones">
-          <article class="opcion revelar">
-            <span class="afectiva">tu nombre</span>
-            <h3>En la tapa</h3>
-            <p>El nombre del bebé, el apodo de la panza o el de la familia que está creciendo.</p>
-          </article>
-          <article class="opcion revelar">
-            <span class="afectiva">tu color</span>
-            <h3>Tonos suaves</h3>
-            <p>Elegís el color de tapa que más te guste, en nuestra paleta de tonos calmos.</p>
-            <div class="muestras" aria-label="Colores de tapa disponibles">
-              <span style="background:#E6E0E8" title="Lavanda"></span>
-              <span style="background:#A8BDD6" title="Azul suave"></span>
-              <span style="background:#ECE7E1" title="Algodón"></span>
-              <span style="background:#463F4E" title="Tinta"></span>
-            </div>
-          </article>
-          <article class="opcion revelar">
-            <span class="afectiva">tu historia</span>
-            <h3>Una dedicatoria</h3>
-            <p>Una frase o mensaje especial en la primera página. Ideal si es para regalar.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- REGALO -->
-    <section class="seccion regalo">
-      <div class="wrap">
-        <div class="regalo-visual revelar" aria-hidden="true">
-          <div class="tarjeta">
-            <svg class="icono-pie"><use href="#pie"/></svg>
-            <span class="afectiva">para vos,</span>
-            <p>que estás por vivir la aventura más linda de todas</p>
-          </div>
-        </div>
-        <div class="regalo-texto revelar">
-          <span class="rotulo">El regalo perfecto</span>
-          <h2 class="titulo">Para una mamá <span class="afectiva">primeriza</span></h2>
-          <p>¿Tu amiga, tu hermana o tu hija está esperando su primer bebé? Regalale algo que va a guardar toda la vida. Un diario personalizado es un detalle que emociona hoy y se vuelve un tesoro con los años.</p>
-          <ul class="ocasiones">
-            <li>Baby shower</li>
-            <li>Anuncio del embarazo</li>
-            <li>Día de la Madre</li>
-            <li>Cumpleaños</li>
-            <li>Porque sí ✨</li>
+        <div class="texto-3d">
+          <span class="rotulo revelar">Por dentro</span>
+          <h2 class="titulo revelar" data-split>Un lugar para todo lo que <span class="afectiva">sentís</span></h2>
+          <p class="revelar">Los nueve meses pasan rápido. Las fotos se pierden en el celular y los detalles se nos escapan. Acá quedan para siempre, escritos con tu letra.</p>
+          <ul class="chips revelar">
+            <li>Ecografías</li><li>Cartas a tu bebé</li><li>Antojos</li><li>La panza mes a mes</li><li>El día que nos conocimos</li>
           </ul>
-          <a class="btn btn-tinta js-wa" data-msg="regalo" href="#" target="_blank" rel="noopener">
-            <svg aria-hidden="true"><use href="#whatsapp"/></svg>
-            Quiero regalarlo
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 · PASA UNA HOJA -->
+    <section class="escena escena--derecha" data-libro="paginas">
+      <div class="wrap">
+        <div class="texto-3d">
+          <span class="rotulo revelar">Semana a semana</span>
+          <h2 class="titulo revelar" data-split>Páginas que vas a querer <span class="afectiva">releer siempre</span></h2>
+          <ol class="indice revelar">
+            <li><span>01</span>El positivo y cómo lo contaste</li>
+            <li><span>02</span>La panza que crece, mes a mes</li>
+            <li><span>03</span>Primeras pataditas y antojos</li>
+            <li><span>04</span>Cartas para que lea cuando sea grande</li>
+            <li><span>05</span>El día que por fin nos conocimos</li>
+          </ol>
+          <p class="ritual revelar"><span class="afectiva">un ritual simple</span> Cinco minutos por semana alcanzan. Sin presiones: escribís cuando querés y como querés.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 · DISEÑÁ TU TAPA -->
+    <section class="escena disena" id="disena" data-libro="disena">
+      <div class="wrap">
+        <div class="texto-3d">
+          <span class="rotulo revelar">Diseñá el tuyo</span>
+          <h2 class="titulo revelar" data-split>Tu tapa, <span class="afectiva">a tu manera</span></h2>
+          <p class="revelar">Probá cómo quedaría tu diario. Cuando te guste, me lo mandás por WhatsApp y lo hacemos realidad.</p>
+
+          <form class="disena-form revelar" id="disena-form" autocomplete="off">
+            <fieldset class="campo">
+              <legend class="rotulo">Versión</legend>
+              <div class="segmento">
+                <label><input type="radio" name="version" value="personalizado" checked><span>Personalizado</span></label>
+                <label><input type="radio" name="version" value="clasico"><span>Clásico</span></label>
+              </div>
+              <p class="ayuda" id="ayuda-version" aria-live="polite"></p>
+            </fieldset>
+
+            <div class="campo" id="campo-nombre">
+              <label class="rotulo" for="nombre">Nombre en la tapa</label>
+              <input class="entrada" id="nombre" name="nombre" maxlength="14" value="Noah" placeholder="Ej: Emma, Bauti, Poroto">
+            </div>
+
+            <fieldset class="campo">
+              <legend class="rotulo">Frase</legend>
+              <div class="opciones-frase">
+                <label><input type="radio" name="frase" value="esperándote" checked><span>esperándote</span></label>
+                <label><input type="radio" name="frase" value="dulce espera"><span>dulce espera</span></label>
+                <label><input type="radio" name="frase" value="te soñamos"><span>te soñamos</span></label>
+                <label><input type="radio" name="frase" value="nuestra historia"><span>nuestra historia</span></label>
+              </div>
+            </fieldset>
+
+            <fieldset class="campo">
+              <legend class="rotulo">Color de tapa</legend>
+              <div class="colores">
+                <label title="Lavanda"><input type="radio" name="tapa" value="lavanda" checked><span style="--c:#E6E0E8"></span><em>Lavanda</em></label>
+                <label title="Azul suave"><input type="radio" name="tapa" value="azul"><span style="--c:#A8BDD6"></span><em>Azul suave</em></label>
+                <label title="Algodón"><input type="radio" name="tapa" value="algodon"><span style="--c:#ECE7E1"></span><em>Algodón</em></label>
+                <label title="Tinta"><input type="radio" name="tapa" value="tinta"><span style="--c:#463F4E"></span><em>Tinta</em></label>
+              </div>
+            </fieldset>
+
+            <div class="disena-pie">
+              <a class="btn btn-tinta" id="disena-cta" href="https://wa.me/5492213512482" target="_blank" rel="noopener">
+                <svg aria-hidden="true"><use href="#whatsapp"/></svg>Pedir este diseño
+              </a>
+              <p class="resumen" id="disena-resumen" aria-live="polite"></p>
+            </div>
+          </form>
+        </div>
+        <div class="slot-2d" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- 5 · REGALO -->
+    <section class="solido regalo" id="regalo">
+      <div class="wrap">
+        <div class="regalo-texto">
+          <span class="rotulo revelar">El regalo perfecto</span>
+          <h2 class="titulo revelar" data-split>El regalo que una mamá primeriza <span class="afectiva">va a guardar siempre</span></h2>
+          <p class="revelar">¿Tu amiga, tu hermana o tu hija está esperando su primer bebé? Regalale algo que emociona hoy y se vuelve un tesoro con los años. Sumale una dedicatoria y llega listo para sorprender.</p>
+          <ul class="ocasiones revelar">
+            <li><span>i</span>Baby shower</li>
+            <li><span>ii</span>Anuncio del embarazo</li>
+            <li><span>iii</span>Día de la Madre</li>
+            <li><span>iv</span>Cumpleaños</li>
+            <li><span>v</span>Porque sí ✨</li>
+          </ul>
+          <a class="btn btn-tinta js-wa revelar" data-msg="regalo" href="https://wa.me/5492213512482" target="_blank" rel="noopener">
+            <svg aria-hidden="true"><use href="#whatsapp"/></svg>Quiero regalarlo
           </a>
         </div>
+        <div class="tarjeta-zona revelar" aria-hidden="true">
+          <div class="tarjeta">
+            <span class="rotulo">Huellita de papel</span>
+            <svg class="icono-pie"><use href="#pie"/></svg>
+            <p class="dedicatoria"><span id="dedicatoria"></span><i class="cursor"></i></p>
+            <span class="firma">con amor</span>
+          </div>
+          <svg class="destello-deco d1"><use href="#destello"/></svg>
+          <svg class="destello-deco d2"><use href="#destello"/></svg>
+        </div>
       </div>
     </section>
 
-    <!-- CÓMO PEDIRLO -->
-    <section class="seccion pasos">
+    <!-- 6 · HISTORIA -->
+    <section class="solido historia" id="historia">
       <div class="wrap">
-        <div class="encabezado revelar">
-          <span class="rotulo">Cómo pedirlo</span>
-          <h2 class="titulo">Simple, <span class="afectiva">de mamá a mamá</span></h2>
+        <div class="sello revelar" aria-hidden="true">
+          <svg viewBox="0 0 200 200">
+            <defs><path id="circulo" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/></defs>
+            <g class="sello-giro">
+              <text><textPath href="#circulo" textLength="496" lengthAdjust="spacing">la historia de tu familia · con amor · huellita de papel ·</textPath></text>
+            </g>
+            <circle cx="100" cy="100" r="62" fill="none" stroke="currentColor" stroke-width=".6" opacity=".5"/>
+            <use href="#pie" x="82" y="74" width="36" height="50"/>
+          </svg>
+        </div>
+        <div class="historia-texto">
+          <span class="rotulo revelar">Detrás de Huellita</span>
+          <blockquote class="revelar">
+            <p>“Cada diario lo pienso como si fuera para mí.”</p>
+          </blockquote>
+          <p class="revelar">Creé Huellita de papel porque creo que los nueve meses más especiales merecen algo más que fotos perdidas en el celular. Cada diario lo diseño con el mismo cariño con el que vos lo vas a escribir, y te acompaño por WhatsApp de principio a fin.</p>
+          <span class="firma revelar">Andrea</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 · CÓMO PEDIRLO -->
+    <section class="solido pasos">
+      <div class="wrap">
+        <div class="encabezado">
+          <span class="rotulo revelar">Cómo pedirlo</span>
+          <h2 class="titulo revelar" data-split>Simple, <span class="afectiva">de mamá a mamá</span></h2>
         </div>
         <ol class="pasos-lista">
           <li class="revelar">
-            <div class="circulo">1</div>
+            <span class="num afectiva">uno</span>
             <h3>Escribime</h3>
-            <p>Mandame un mensaje por WhatsApp y contame para quién es.</p>
+            <p>Mandame un mensaje por WhatsApp y contame si es para vos o para regalar.</p>
+          </li>
+          <li class="huellitas" aria-hidden="true">
+            <svg><use href="#huella"/></svg><svg><use href="#huella"/></svg><svg><use href="#huella"/></svg><svg><use href="#huella"/></svg>
           </li>
           <li class="revelar">
-            <div class="circulo">2</div>
-            <h3>Lo diseñamos juntas</h3>
-            <p>Elegimos nombre, color de tapa y dedicatoria. Te muestro cómo queda antes de hacerlo.</p>
+            <span class="num afectiva">dos</span>
+            <h3>Elegimos juntas</h3>
+            <p>Clásico o personalizado, color de tapa, nombre y dedicatoria.</p>
+          </li>
+          <li class="huellitas" aria-hidden="true">
+            <svg><use href="#huella"/></svg><svg><use href="#huella"/></svg><svg><use href="#huella"/></svg><svg><use href="#huella"/></svg>
           </li>
           <li class="revelar">
-            <div class="circulo">3</div>
+            <span class="num afectiva">tres</span>
             <h3>Lo recibís</h3>
             <p>Tu diario llega listo para empezar a llenarse de recuerdos.</p>
           </li>
         </ol>
-        <div class="centro revelar">
-          <a class="btn btn-tinta js-wa" href="#" target="_blank" rel="noopener">
-            <svg aria-hidden="true"><use href="#whatsapp"/></svg>
-            Empezar mi pedido
-          </a>
-        </div>
       </div>
     </section>
 
-    <!-- NOTA PERSONAL -->
-    <section class="seccion nota-personal">
-      <div class="wrap revelar">
-        <svg class="icono-pie" aria-hidden="true"><use href="#pie"/></svg>
-        <blockquote>
-          <p>“Huellita de papel nació de las ganas de guardar cada momento de mi propio embarazo. Lo usé yo primero, y hoy quiero que vos también tengas un lugar para tu historia.”</p>
-        </blockquote>
-        <span class="firma">con cariño, Andrea</span>
-      </div>
-    </section>
-
-    <!-- PREGUNTAS -->
-    <section class="seccion preguntas" style="padding-top:0">
+    <!-- 8 · PREGUNTAS -->
+    <section class="solido preguntas" id="preguntas">
       <div class="wrap">
-        <div class="encabezado revelar">
-          <span class="rotulo">Preguntas frecuentes</span>
-          <h2 class="titulo">Lo que <span class="afectiva">suelen preguntarme</span></h2>
+        <div class="encabezado">
+          <span class="rotulo revelar">Preguntas frecuentes</span>
+          <h2 class="titulo revelar" data-split>Lo que <span class="afectiva">suelen preguntarme</span></h2>
         </div>
         <div class="faq revelar">
           <details>
             <summary>¿Qué diferencia hay entre el clásico y el personalizado?</summary>
-            <p>Los dos tienen las mismas páginas para acompañar tu embarazo. El clásico viene con la tapa de diseño de la marca, listo para llevar. El personalizado lo hacemos a pedido, con el nombre, el color de tapa y la dedicatoria que elijas.</p>
+            <p>Los dos tienen las mismas páginas para acompañar tu embarazo. El clásico viene con la tapa de diseño de la marca, como el que encontrás en una librería. El personalizado lo hacemos a pedido, con el nombre, la frase, el color de tapa y la dedicatoria que elijas.</p>
           </details>
           <details>
             <summary>¿Puedo personalizarlo si todavía no sé el nombre del bebé?</summary>
-            <p>¡Claro! Podés usar el apodo de la panza, el apellido de la familia o una palabra especial. También podemos dejar la tapa con “esperándote”.</p>
+            <p>¡Claro! Podés usar el apodo de la panza, el apellido de la familia o dejar la tapa solo con la frase.</p>
           </details>
           <details>
             <summary>¿En qué momento del embarazo conviene empezarlo?</summary>
-            <p>Cuando quieras. Hay mamás que lo empiezan con el positivo y otras en el último trimestre. Está pensado para que puedas completarlo a tu ritmo.</p>
+            <p>Cuando quieras. Hay mamás que lo empiezan con el positivo y otras en el último trimestre. Está pensado para completarlo a tu ritmo.</p>
           </details>
           <details>
             <summary>¿Cuánto tarda en estar listo?</summary>
-            <p>Cada diario se hace a pedido. Escribime y te cuento los tiempos actuales, así llegás a tiempo si es para un baby shower o una fecha especial.</p>
+            <p>Escribime y te cuento los tiempos actuales, así llegás a tiempo si es para un baby shower o una fecha especial.</p>
           </details>
           <details>
             <summary>¿Hacen envíos?</summary>
-            <p>Sí, escribime por WhatsApp con tu ubicación y vemos juntas la mejor opción para que te llegue.</p>
-          </details>
-          <details>
-            <summary>¿Puedo regalarlo con una dedicatoria?</summary>
-            <p>Sí. Podés sumar un mensaje especial en la primera página para que la futura mamá lo encuentre al abrirlo.</p>
+            <p>Escribime por WhatsApp con tu ubicación y vemos juntas la mejor opción para que te llegue.</p>
           </details>
         </div>
       </div>
     </section>
 
-    <!-- CIERRE -->
-    <section class="seccion cierre">
-      <div class="wrap revelar">
-        <svg class="icono-pie" aria-hidden="true"><use href="#pie"/></svg>
-        <span class="rotulo">Huellita de papel</span>
-        <h2 class="titulo">
-          Pedí el tuyo
-          <span class="afectiva">y empezá a escribir su historia</span>
-        </h2>
-        <p>Escribime por WhatsApp y armamos juntas un diario tan único como tu bebé 🤍</p>
-        <a class="btn btn-papel js-wa" href="#" target="_blank" rel="noopener">
-          <svg aria-hidden="true"><use href="#whatsapp"/></svg>
-          Escribime por WhatsApp
+    <!-- 9 · CIERRE -->
+    <section class="solido cierre">
+      <div class="wrap">
+        <div class="huellitas huellitas--camino" aria-hidden="true">
+          <svg><use href="#huella"/></svg><svg><use href="#huella"/></svg><svg><use href="#huella"/></svg><svg><use href="#huella"/></svg><svg><use href="#huella"/></svg><svg><use href="#huella"/></svg>
+        </div>
+        <h2 class="titulo revelar" data-split>¿Empezamos a escribir <span class="afectiva">su historia?</span></h2>
+        <p class="revelar">Escribime por WhatsApp y armamos juntas un diario tan único como tu bebé 🤍</p>
+        <a class="btn btn-tinta js-wa revelar" href="https://wa.me/5492213512482" target="_blank" rel="noopener">
+          <svg aria-hidden="true"><use href="#whatsapp"/></svg>Escribime por WhatsApp
         </a>
       </div>
     </section>
@@ -717,52 +321,22 @@
 
   <footer class="footer">
     <div class="wrap">
-      <span class="afectiva">la historia de tu familia, con amor</span>
-      <span>© <span id="anio"></span> Huellita de papel 🐾</span>
+      <div class="logo logo--claro">
+        <svg class="icono-pie" aria-hidden="true"><use href="#pie"/></svg>
+        <span class="logo-texto"><span class="titulo">Huellita</span><span class="afectiva">de papel</span></span>
+      </div>
+      <p class="afectiva footer-lema">la historia de tu familia, con amor</p>
+      <div class="footer-datos">
+        <a class="js-wa" href="https://wa.me/5492213512482" target="_blank" rel="noopener">WhatsApp · 221 351-2482</a>
+        <span>© <span id="anio">2026</span> Huellita de papel 🐾</span>
+      </div>
     </div>
   </footer>
 
-  <a class="wa-flotante js-wa" href="#" target="_blank" rel="noopener" aria-label="Escribime por WhatsApp">
+  <div class="mini-vista" id="mini-vista" aria-hidden="true"><canvas id="mini-tapa"></canvas></div>
+
+  <a class="wa-flotante js-wa" href="https://wa.me/5492213512482" target="_blank" rel="noopener" aria-label="Escribime por WhatsApp">
     <svg aria-hidden="true"><use href="#whatsapp"/></svg>
   </a>
-
-  <script>
-    // WhatsApp: 221 351-2482 (La Plata, AR) en formato internacional
-    var WA_NUMERO = "5492213512482";
-    var MENSAJES = {
-      general: "¡Hola! 🤍 Vi la página de Huellita de papel y quiero mi diario de embarazo personalizado.",
-      clasico: "¡Hola! 🤍 Me interesa el diario clásico de Huellita de papel.",
-      regalo: "¡Hola! 🤍 Quiero regalar un diario de Huellita de papel a una futura mamá."
-    };
-    document.querySelectorAll(".js-wa").forEach(function (a) {
-      var msg = MENSAJES[a.dataset.msg] || MENSAJES.general;
-      a.href = "https://wa.me/" + WA_NUMERO + "?text=" + encodeURIComponent(msg);
-    });
-
-    document.getElementById("anio").textContent = new Date().getFullYear();
-
-    // Header con borde y botón flotante al hacer scroll
-    var header = document.querySelector(".header");
-    var flotante = document.querySelector(".wa-flotante");
-    function alScrollear() {
-      var y = window.scrollY;
-      header.classList.toggle("scrolled", y > 8);
-      flotante.classList.toggle("visible", y > window.innerHeight * 0.7);
-    }
-    window.addEventListener("scroll", alScrollear, { passive: true });
-    alScrollear();
-
-    // Aparición suave de secciones
-    if ("IntersectionObserver" in window) {
-      var obs = new IntersectionObserver(function (entradas) {
-        entradas.forEach(function (e) {
-          if (e.isIntersecting) { e.target.classList.add("visible"); obs.unobserve(e.target); }
-        });
-      }, { threshold: 0.12 });
-      document.querySelectorAll(".revelar").forEach(function (el) { obs.observe(el); });
-    } else {
-      document.querySelectorAll(".revelar").forEach(function (el) { el.classList.add("visible"); });
-    }
-  </script>
 </body>
 </html>
