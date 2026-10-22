@@ -1,6 +1,6 @@
 # Huellita de papel
 
-One page para la venta de diarios de embarazo personalizados. El CTA abre WhatsApp (221 351-2482).
+One page para la venta de diarios de embarazo personalizados. 
 
 Es un sitio estático: `index.html` + `assets/`. Se puede publicar tal cual en GitHub Pages, Netlify o Vercel.
 
