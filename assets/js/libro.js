@@ -166,10 +166,16 @@ function iniciar() {
     texLomo.needsUpdate = true;
     matTela.color.set((HT.TAPAS[st.tapa] || HT.TAPAS.lavanda).bg);
   }
-  const tapaInicial = () => window.huellitaTapa || { version: "personalizado", nombre: "Noah", frase: "esperándote", tapa: "lavanda" };
-  pintarTapa(tapaInicial());
+  // La portada muestra el diario sin nombre; el nombre de ejemplo (o el que escriba
+  // la mamá) aparece recién al llegar a "Diseñá el tuyo".
+  const PORTADA = { version: "personalizado", nombre: "", frase: "esperándote", tapa: "lavanda" };
+  let tapaUsuario = window.huellitaTapa || { version: "personalizado", nombre: "Noah", frase: "esperándote", tapa: "lavanda" };
+  let enDisena = false;
+  const tapaVisible = () => (enDisena ? tapaUsuario : PORTADA);
+
+  pintarTapa(tapaVisible());
   HT.ready.then(() => {
-    pintarTapa(tapaInicial());
+    pintarTapa(tapaVisible());
     Object.keys(paginas).forEach((n) => {
       HT.drawPage(paginas[n].image, n);
       paginas[n].needsUpdate = true;
@@ -179,9 +185,12 @@ function iniciar() {
 
   // Resorte: el libro hace un pequeño giro cada vez que cambia la tapa
   const resorte = { x: 0, v: 0 };
+  const girar = () => { if (!reduce) resorte.v += 2.4; };
   window.addEventListener("tapa:cambio", (e) => {
-    pintarTapa(e.detail);
-    if (!reduce) resorte.v += 2.4;
+    tapaUsuario = e.detail;
+    if (!enDisena) return;
+    pintarTapa(tapaUsuario);
+    girar();
   });
 
   /* ---------- scroll → estado ---------- */
@@ -257,6 +266,15 @@ function iniciar() {
     const visible = ultima.getBoundingClientRect().bottom > 0;
     canvas.style.visibility = visible ? "visible" : "hidden";
     if (!visible) return;
+
+    // Cambia a la tapa personalizable a mitad de camino hacia "Diseñá el tuyo"
+    const n = anclas.length;
+    const ahoraEnDisena = window.scrollY > (anclas[n - 2].a + anclas[n - 1].a) / 2;
+    if (ahoraEnDisena !== enDisena) {
+      enDisena = ahoraEnDisena;
+      pintarTapa(tapaVisible());
+      girar();
+    }
 
     const obj = objetivo();
     const k = reduce ? 1 : 1 - Math.exp(-dt * 4.5);

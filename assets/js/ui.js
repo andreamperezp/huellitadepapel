@@ -66,11 +66,34 @@
   /* ---------- header y botón flotante ---------- */
   var header = document.querySelector(".header");
   var flotante = document.querySelector(".wa-flotante");
+  var arriba = document.querySelector(".arriba");
+  var oscuras = document.querySelectorAll(".historia, .footer");
+  function sobreOscuro(px) {
+    var y = window.innerHeight - px;
+    return Array.prototype.some.call(oscuras, function (el) {
+      var r = el.getBoundingClientRect();
+      return r.top <= y && r.bottom >= y;
+    });
+  }
   function alScrollear() {
     var y = window.scrollY;
     header.classList.toggle("scrolled", y > 10);
     flotante.classList.toggle("visible", y > window.innerHeight * 0.8);
+    arriba.classList.toggle("visible", y > window.innerHeight * 1.2);
+    // Sobre fondos oscuros los botones pasan a color papel para no perderse
+    flotante.classList.toggle("sobre-oscuro", sobreOscuro(50));
+    arriba.classList.toggle("sobre-oscuro", sobreOscuro(120));
   }
+
+  // El logo y el botón "volver arriba" llevan al inicio
+  function irArriba(e) {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+    if (window.location.hash) history.replaceState(null, "", window.location.pathname + window.location.search);
+  }
+  document.querySelectorAll(".header .logo, .arriba").forEach(function (el) {
+    el.addEventListener("click", irArriba);
+  });
   window.addEventListener("scroll", alScrollear, { passive: true });
   alScrollear();
 
@@ -121,7 +144,11 @@
   // Tapas en 2D: vista previa en celular y reemplazo si no hay WebGL
   function pintar2D(st) {
     if (!window.HuellitaTapa) return;
-    lienzos.forEach(function (c) { window.HuellitaTapa.drawCover(c, st); });
+    lienzos.forEach(function (c) {
+      // La tapa de la portada va sin nombre
+      var portada = c.parentNode.hasAttribute("data-portada");
+      window.HuellitaTapa.drawCover(c, portada ? { version: "personalizado", nombre: "", frase: "esperándote", tapa: "lavanda" } : st);
+    });
   }
 
   var mini = document.getElementById("mini-tapa");
