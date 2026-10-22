@@ -220,6 +220,39 @@
     .muestras { display: flex; justify-content: center; gap: 10px; margin-top: 1.2rem; }
     .muestras span { width: 26px; height: 26px; border-radius: 50%; border: 1px solid rgba(70,63,78,.15); }
 
+    /* versiones: clásico y personalizado */
+    .versiones { background: var(--algodon); }
+    .versiones-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 3vw, 32px); max-width: 960px; margin: 0 auto; }
+    .version {
+      background: var(--papel); border-radius: var(--radius);
+      padding: clamp(28px, 4vw, 44px);
+      display: flex; flex-direction: column;
+    }
+    .version-tinta { background: var(--tinta); color: var(--papel); }
+    .version-tinta .titulo, .version-tinta .afectiva, .version-tinta .rotulo { color: var(--papel); }
+    .version .etiqueta {
+      align-self: flex-start;
+      border: 1px solid currentColor; border-radius: 999px;
+      padding: .35em 1em; margin-bottom: 1.6rem;
+    }
+    .version-tinta .etiqueta { color: var(--azul); }
+    .version .mini-tapa { position: relative; width: 150px; aspect-ratio: 3 / 4; margin-bottom: 1.6rem; }
+    .version .mini-tapa .tapa { padding: 10%; box-shadow: 0 16px 30px -18px rgba(0,0,0,.45); }
+    .version .mini-tapa .tapa::before { inset: 7px 7px 7px 11px; }
+    .version .mini-tapa .icono-pie { font-size: 1.3rem; margin-bottom: .3rem; }
+    .version .mini-tapa .afectiva { font-size: 1.7rem; }
+    .version .mini-tapa .nombre { font-size: 1.15rem; }
+    .version-tinta .mini-tapa .tapa { background: var(--azul); }
+    .version-tinta .mini-tapa .tapa .afectiva { color: var(--tinta); }
+    .version .mini-tapa .tapa .afectiva { color: var(--pizarra); }
+    .version h3 { font-size: clamp(1.7rem, 3vw, 2.1rem); }
+    .version h3 .afectiva { font-size: 1.15em; }
+    .version > p { margin: .8rem 0 1.2rem; }
+    .version ul { list-style: none; padding: 0; margin: 0 0 2rem; display: grid; gap: .55rem; font-size: .97rem; }
+    .version li { display: flex; gap: .7rem; align-items: flex-start; line-height: 1.5; }
+    .version li svg { flex: none; width: 14px; height: 14px; margin-top: .35em; color: var(--azul); }
+    .version .btn { margin-top: auto; align-self: flex-start; }
+
     /* regalo */
     .regalo .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 88px); align-items: center; }
     .regalo-visual {
@@ -340,7 +373,7 @@
       .incluye .encabezado p { margin-left: auto; }
       .ocasiones { justify-content: center; }
       .regalo-visual { max-width: 340px; order: 2; }
-      .momentos-lista, .opciones { grid-template-columns: 1fr; }
+      .momentos-lista, .opciones, .versiones-grid { grid-template-columns: 1fr; }
       .pasos-lista { grid-template-columns: 1fr; gap: 40px; }
     }
     @media (max-width: 560px) {
@@ -389,7 +422,7 @@
     <section class="hero">
       <div class="wrap">
         <div class="revelar">
-          <span class="rotulo">Diario de embarazo personalizado</span>
+          <span class="rotulo">Diarios de embarazo · clásicos y personalizados</span>
           <h1 class="titulo">
             La historia de tu familia
             <span class="afectiva">empieza en la panza</span>
@@ -463,6 +496,61 @@
           <li><svg aria-hidden="true"><use href="#corazon"/></svg><div><strong>Cartas a tu bebé</strong><span>Para que las lea cuando sea grande</span></div></li>
           <li><svg aria-hidden="true"><use href="#corazon"/></svg><div><strong>El día que te conocimos</strong><span>El nacimiento, contado por vos</span></div></li>
         </ul>
+      </div>
+    </section>
+
+    <!-- VERSIONES: CLÁSICO Y PERSONALIZADO -->
+    <section class="seccion versiones" id="versiones">
+      <div class="wrap">
+        <div class="encabezado revelar">
+          <span class="rotulo">Elegí tu diario</span>
+          <h2 class="titulo">Dos formas de <span class="afectiva">guardar tu historia</span></h2>
+          <p>Las mismas páginas llenas de amor, en dos versiones. Un diario clásico listo para llevar, o uno hecho a pedido con tu nombre.</p>
+        </div>
+        <div class="versiones-grid">
+          <article class="version revelar">
+            <span class="rotulo etiqueta">Listo para regalar</span>
+            <div class="mini-tapa" aria-hidden="true">
+              <div class="tapa">
+                <svg class="icono-pie"><use href="#pie"/></svg>
+                <span class="afectiva">esperándote</span>
+              </div>
+            </div>
+            <h3 class="titulo">Diario <span class="afectiva">clásico</span></h3>
+            <p>Como el que encontrás en una librería, pero con todo el cariño de Huellita de papel. Ideal si lo querés ya o para tener a mano un regalo lindo.</p>
+            <ul>
+              <li><svg aria-hidden="true"><use href="#destello"/></svg>Tapa con el diseño de la marca</li>
+              <li><svg aria-hidden="true"><use href="#destello"/></svg>Todas las páginas del embarazo, mes a mes</li>
+              <li><svg aria-hidden="true"><use href="#destello"/></svg>Sin esperas de diseño</li>
+            </ul>
+            <a class="btn btn-tinta js-wa" data-msg="clasico" href="#" target="_blank" rel="noopener">
+              <svg aria-hidden="true"><use href="#whatsapp"/></svg>
+              Quiero el clásico
+            </a>
+          </article>
+
+          <article class="version version-tinta revelar">
+            <span class="rotulo etiqueta">Hecho a pedido</span>
+            <div class="mini-tapa" aria-hidden="true">
+              <div class="tapa">
+                <svg class="icono-pie"><use href="#pie"/></svg>
+                <span class="afectiva">esperándote</span>
+                <span class="nombre">Noah</span>
+              </div>
+            </div>
+            <h3 class="titulo">Diario <span class="afectiva">personalizado</span></h3>
+            <p>Único, como tu bebé. Lo diseñamos juntas con los detalles que lo hacen solo tuyo.</p>
+            <ul>
+              <li><svg aria-hidden="true"><use href="#destello"/></svg>Nombre o apodo de la panza en la tapa</li>
+              <li><svg aria-hidden="true"><use href="#destello"/></svg>Elegís el color de tapa</li>
+              <li><svg aria-hidden="true"><use href="#destello"/></svg>Dedicatoria especial en la primera página</li>
+            </ul>
+            <a class="btn btn-papel js-wa" href="#" target="_blank" rel="noopener">
+              <svg aria-hidden="true"><use href="#whatsapp"/></svg>
+              Quiero el personalizado
+            </a>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -582,6 +670,10 @@
         </div>
         <div class="faq revelar">
           <details>
+            <summary>¿Qué diferencia hay entre el clásico y el personalizado?</summary>
+            <p>Los dos tienen las mismas páginas para acompañar tu embarazo. El clásico viene con la tapa de diseño de la marca, listo para llevar. El personalizado lo hacemos a pedido, con el nombre, el color de tapa y la dedicatoria que elijas.</p>
+          </details>
+          <details>
             <summary>¿Puedo personalizarlo si todavía no sé el nombre del bebé?</summary>
             <p>¡Claro! Podés usar el apodo de la panza, el apellido de la familia o una palabra especial. También podemos dejar la tapa con “esperándote”.</p>
           </details>
@@ -639,6 +731,7 @@
     var WA_NUMERO = "5492213512482";
     var MENSAJES = {
       general: "¡Hola! 🤍 Vi la página de Huellita de papel y quiero mi diario de embarazo personalizado.",
+      clasico: "¡Hola! 🤍 Me interesa el diario clásico de Huellita de papel.",
       regalo: "¡Hola! 🤍 Quiero regalar un diario de Huellita de papel a una futura mamá."
     };
     document.querySelectorAll(".js-wa").forEach(function (a) {
